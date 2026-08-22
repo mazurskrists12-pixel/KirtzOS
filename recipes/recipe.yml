@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 name: kirtz-os
 description: KirtzOS - My personal high-performance Bazzite spin stripped of default bloat, pre-configured with Oxygen Dark, Zen Browser, and out-of-the-box gaming gear.
 base-image: ghcr.io/ublue-os/bazzite-nvidia
@@ -34,12 +35,10 @@ modules:
         - com.github.wwmm.easyeffects # PipeWire Audio Booster
 
   - type: brew
-    brew:
-      nofile: true
-    install-taps:
+    taps:
       - homebrew/cask
       - homebrew/core
-    install-formulae:
+    formulae:
       - gcc
       - git
       - wget
@@ -48,4 +47,3 @@ modules:
     scripts:
       - set_oxygen_dark.sh
       - setup_starship.sh
-      
