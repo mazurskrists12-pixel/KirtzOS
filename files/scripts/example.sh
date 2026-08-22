@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
-
-# Tell this script to exit if there are any errors.
-# You should have this in every custom script, to ensure that your completed
-# builds actually ran successfully without any errors!
 set -oue pipefail
 
-# Your code goes here.
-echo 'This is an example shell script'
-echo 'Scripts here will run during build if specified in recipe.yml'
+# Create system-wide desktop default directory
+mkdir -p /etc/skel/.config
+
+# Apply Oxygen Dark color scheme and widget style out of the box
+cat <<'EOF' > /etc/skel/.config/kdeglobals
+[KDE]
+LookAndFeelPackage=org.kde.oxygen
+WidgetStyle=Oxygen
+
+[Colors:Window]
+BackgroundNormal=49,54,59
+ForegroundNormal=239,240,241
+EOF
+
+chmod +x /etc/skel/.config/kdeglobals
