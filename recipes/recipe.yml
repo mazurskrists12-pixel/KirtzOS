@@ -1,35 +1,51 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
+# image will be published to ghcr.io/<user>/<name>
 name: kirtz-os
+# description will be included in the image's metadata
 description: KirtzOS - My personal high-performance Bazzite spin stripped of default bloat, pre-configured with Oxygen Dark, Zen Browser, and out-of-the-box gaming gear.
-base-image: ghcr.io/ublue-os/bazzite-nvidia
-image-version: latest
 
+# the base image to build on top of (FROM) and the version tag to use
+base-image: ghcr.io/ublue-os/bazzite-nvidia
+image-version: latest # You can pin to a specific version of Fedora as well
+
+# module configuration, executed in order
+# you can include multiple instances of the same module
 modules:
-  - type: rpm-ostree
+  - type: files
+    files:
+      - source: system
+        destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
+
+  - type: dnf
+    repos:
+      copr:
+        - atim/starship
     install:
-      # Desktop, Themes & System Polish
-      - plasma-oxygen
-      - oxygen-icon-theme
-      - kvantum
-      # Terminal & Performance Utilities
-      - starship
-      - fastfetch
-      - lutris
-      - mangohud
-      - goverlay
+      packages:
+        - plasma-oxygen
+        - oxygen-icon-theme
+        - kvantum
+        - starship
+        - fastfetch
+        - lutris
+        - mangohud
+        - goverlay
 
   - type: default-flatpaks
-    notify: true
-    system:
-      install:
-        - io.github.zen_browser.zen
-        - com.valvesoftware.Steam
-        - com.discordapp.Discord
-        - com.obsproject.Studio
-        - org.videolan.VLC
-        - com.heroicgameslauncher.hgl
-        - net.davidotek.pupgui2 # ProtonUp-Qt
-        - com.github.wwmm.easyeffects # PipeWire Audio Booster
+    configurations:
+      - notify: true # Send notification after install/uninstall is finished (true/false)
+        scope: system
+        # If no repo information is specified, Flathub will be used by default
+        install: # system flatpaks we want all users to have and not remove
+          - io.github.zen_browser.zen
+          - com.valvesoftware.Steam
+          - com.discordapp.Discord
+          - com.obsproject.Studio
+          - org.videolan.VLC
+          - com.heroicgameslauncher.hgl
+          - net.davidotek.pupgui2 # ProtonUp-Qt
+          - com.github.wwmm.easyeffects # PipeWire Audio Booster
+      - scope: user # Also add Flathub user repo, but no user packages
 
   - type: brew
     nofile-limits: true
@@ -38,3 +54,5 @@ modules:
     scripts:
       - set_oxygen_dark.sh
       - setup_starship.sh
+
+  - type: signing # this sets up the proper policy & signing files for signed images to work fully
