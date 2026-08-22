@@ -1,10 +1,10 @@
-# KirtzOS 🚀
+# KirtzOS 
 
 KirtzOS is a high-performance, custom Bazzite spin stripped of default bloat, pre-configured with Oxygen Dark, Zen Browser, and out-of-the-box gaming gear.
 
 ---
 
-## 🛠️ Features
+## Features
 
 - **Base:** Bazzite (Nvidia)
 - **Browser:** Zen Browser (Firefox removed)
@@ -14,7 +14,7 @@ KirtzOS is a high-performance, custom Bazzite spin stripped of default bloat, pr
 
 ---
 
-## ⚡ How to Rebase an Existing Fedora Atomic / Bazzite Install
+## How to Rebase an Existing Fedora Atomic / Bazzite Install
 
 If you are already running Bazzite or Fedora Atomic, rebase directly to **KirtzOS** without reinstalling:
 
