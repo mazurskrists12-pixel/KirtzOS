@@ -35,13 +35,7 @@ modules:
         - com.github.wwmm.easyeffects # PipeWire Audio Booster
 
   - type: brew
-    taps:
-      - homebrew/cask
-      - homebrew/core
-    formulae:
-      - gcc
-      - git
-      - wget
+    nofile-limits: true
 
   - type: script
     scripts:
