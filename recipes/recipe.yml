@@ -6,16 +6,17 @@ image-version: latest
 modules:
   - type: rpm-ostree
     install:
-      # Pre-installed Oxygen themes & system monitoring tools
+      # Desktop, Themes & System Polish
       - plasma-oxygen
       - oxygen-icon-theme
-      - plasma-oxygen-decls
+      - kvantum
+      # Terminal & Performance Utilities
+      - starship
       - fastfetch
       - lutris
       - mangohud
       - goverlay
     remove:
-      # Swapped out Firefox in favor of Zen Browser
       - firefox
       - firefox-langpacks
 
@@ -29,7 +30,8 @@ modules:
         - com.obsproject.Studio
         - org.videolan.VLC
         - com.heroicgameslauncher.hgl
-        - net.davidotek.pupgui2
+        - net.davidotek.pupgui2 # ProtonUp-Qt
+        - com.github.wwmm.easyeffects # PipeWire Audio Booster
 
   - type: brew
     brew:
@@ -45,4 +47,5 @@ modules:
   - type: script
     scripts:
       - set_oxygen_dark.sh
+      - setup_starship.sh
       
