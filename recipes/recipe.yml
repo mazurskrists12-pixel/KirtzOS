@@ -5,7 +5,7 @@ name: kirtz-os
 description: KirtzOS - My personal high-performance Bazzite spin stripped of default bloat, pre-configured with Oxygen Dark, Zen Browser, and out-of-the-box gaming gear.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/bazzite-nvidia
+base-image: ghcr.io/ublue-os/bazzite-nvidia-open
 image-version: latest # You can pin to a specific version of Fedora as well
 
 # module configuration, executed in order
