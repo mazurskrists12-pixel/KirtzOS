@@ -17,9 +17,6 @@ modules:
       - lutris
       - mangohud
       - goverlay
-    remove:
-      - firefox
-      - firefox-langpacks
 
   - type: default-flatpaks
     notify: true
